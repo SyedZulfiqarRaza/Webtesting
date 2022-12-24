@@ -7,10 +7,15 @@
 <body>
   <button id="generate-button">Generate Rectangles</button>
   <input type="file" accept=".csv" id="picker">
-  
+  src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.1.0/papaparse.min.js">
   <canvas id="myCanvas" width="1024" height="780" style="border:1px solid #d3d3d3;"></canvas>
   <script>
-    
+    fetch('https://syedzulfiqarraza.github.io/Webtesting/1million_rectangle_data.csv')
+      .then(response => response.text())
+      .then(text => {
+        const data = Papa.parse(text, {header: true});
+        console.log(data.data); // this will log the entire CSV file as an array of objects
+      });
     var reader = new FileReader(),
           picker=document.getElementById("picker"),
           table=document.getElementById("table");
