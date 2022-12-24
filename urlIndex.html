@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Rectangles</title>
+</head>
+<body>
+  
+  <button id="btn-fetch">Create Rectangles</button>
+  <canvas id="myCanvas" width="1024" height="780" style="border:1px solid #d3d3d3;"></canvas>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.1.0/papaparse.min.js"></script>
+  <script>
+    const button = document.getElementById('btn-fetch');
+    button.addEventListener('click', function() {
+      // code to fetch and parse CSV goes here
+    
+    fetch('https://syedzulfiqarraza.github.io/Webtesting/1million_rectangle_data.csv')
+      .then(response => response.text())
+      .then(text => {
+        const data = Papa.parse(text, {header: true});
+        row=data.data;
+        const rows = Object.values(row);
+        arr=["red","blue","green","purple",	"yellow"];
+        for (let i = 0; i < rows.length-1; i++) {
+              row=data.data[i];
+              const rows = Object.values(row);
+               var c = document.getElementById("myCanvas");
+               var ctx = c.getContext("2d");
+               ctx.beginPath();
+               ctx.lineWidth = "6";
+               ctx.strokeStyle = arr[Math.floor(Math.random() *5)];
+               
+                   
+               console.log(rows.length);
+               console.log(rows[0]);
+               console.log(rows[1]);
+               console.log(rows[2]);
+               console.log(rows[3]);
+               ctx.rect(rows[0],rows[1], rows[2], rows[3]);  
+               
+               ctx.stroke();
+           }
+        
+        
+         // this will log the entire CSV file as an array of objects
+      });
+    });
+  </script>
+</body>
+</html>
