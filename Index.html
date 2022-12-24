@@ -23,7 +23,7 @@
         let csv=reader.result;
         let rows=csv.split("\r\n");
         
-        arr=["red","blue","green"];
+        arr=["red","blue","green","purple",	"yellow"];
         
         for (let i = 0; i < rows.length-1; i++) {
                
@@ -31,7 +31,7 @@
           var ctx = c.getContext("2d");
           ctx.beginPath();
           ctx.lineWidth = "6";
-          ctx.strokeStyle = arr[Math.floor(Math.random() *3)];
+          ctx.strokeStyle = arr[Math.floor(Math.random() *5)];
           let text = rows[i].toString();
               
           let row=text.split(",");
