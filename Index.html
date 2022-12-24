@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Rectangle Generate</title>
+  <style></style>
+</head>
+<body>
+  <button id="generate-button">Generate Rectangles</button>
+  <input type="file" accept=".csv" id="picker">
+  
+  <canvas id="myCanvas" width="1024" height="780" style="border:1px solid #d3d3d3;"></canvas>
+  <script>
+    
+    var reader = new FileReader(),
+          picker=document.getElementById("picker"),
+          table=document.getElementById("table");
+      
+      picker.onchange=()=> reader.readAsText(picker.files[0]);
+    const button = document.getElementById('generate-button');
+    button.addEventListener('click', function(){
+       
+      {
+        let csv=reader.result;
+        let rows=csv.split("\r\n");
+        
+        arr=["red","blue","green"];
+        
+        for (let i = 0; i < rows.length-1; i++) {
+               
+          var c = document.getElementById("myCanvas");
+          var ctx = c.getContext("2d");
+          ctx.beginPath();
+          ctx.lineWidth = "6";
+          ctx.strokeStyle = arr[Math.floor(Math.random() *3)];
+          let text = rows[i].toString();
+              
+          let row=text.split(",");
+          console.log(row);
+          
+          ctx.rect(row[0],row[1], row[2], row[3]);  
+          
+          ctx.stroke();
+      }
+    };   
+    });
+
+    </script>
+  
+  </body>
+</html>
